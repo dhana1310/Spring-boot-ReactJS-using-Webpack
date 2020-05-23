@@ -1,10 +1,8 @@
-'use strict';
+import React from 'react';
+import './App.css';
+import axios from 'axios';
 
-// tag::vars[]
-const React = require('react'); // <1>
-const ReactDOM = require('react-dom'); // <2>
-const client = require('./client'); // <3>
-// end::vars[]
+'use strict';
 
 // tag::app[]
 class App extends React.Component { // <1>
@@ -14,10 +12,11 @@ class App extends React.Component { // <1>
 		this.state = {employees: []};
 	}
 
-	componentDidMount() { // <2>
-		client({method: 'GET', path: '/api/employees'}).done(response => {
-			this.setState({employees: response.entity._embedded.employees});
-		});
+  componentDidMount() { // <2>
+    
+    axios.get('http://localhost:8080/api/employees').then(response => {
+      this.setState({employees: response.data._embedded.employees});
+    });
 	}
 
 	render() { // <3>
@@ -64,9 +63,29 @@ class Employee extends React.Component{
 }
 // end::employee[]
 
-// tag::render[]
-ReactDOM.render(
-	<App />,
-	document.getElementById('react')
-)
-// end::render[]
+
+function App1() {
+  return (
+//    <div className="App">
+//      <header className="App-header">
+//        <img src={logo} className="App-logo" alt="logo" />
+//        <p>
+//          Edit <code>src/App.js</code> and save to reload.
+//        </p>
+//        <h1>Hello world</h1>
+//        <a
+//          className="App-link"
+//          href="https://reactjs.org"
+//          target="_blank"
+//          rel="noopener noreferrer"
+//        >
+//          Learn React
+//        </a>
+//      </header>
+//    </div>
+<h1>Hello world</h1>
+    
+  );
+}
+
+export default App;

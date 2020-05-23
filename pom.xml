@@ -18,7 +18,7 @@
 		<java.version>14</java.version>
 		<node.version>v12.16.3</node.version>
 		<npm.version>6.14.4</npm.version>
-		<frontend-src-dir>${project.basedir}/src/main/js</frontend-src-dir>
+		<frontend-src-dir>${project.basedir}/src/main/app</frontend-src-dir>
 	</properties>
 
 	<dependencies>
@@ -34,10 +34,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-<!--		<dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>-->
+		</dependency>
 
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -76,7 +76,7 @@
 				<configuration>
 					<nodeVersion>${node.version}</nodeVersion>
 					<npmVersion>${npm.version}</npmVersion>
-<!--					<workingDirectory>${frontend-src-dir}</workingDirectory>-->
+					<workingDirectory>${frontend-src-dir}</workingDirectory>
 					<installDirectory>${project.build.directory}</installDirectory>
 				</configuration>
 				<executions>
@@ -95,16 +95,27 @@
 							<arguments>install</arguments>
 						</configuration>
 					</execution>
-<!--					Webpack helps to bundle all the code and bundles together-->
+
+<!--	npm run build will use webpack internally to create production files, as mentioned inside package.json and web.config.js-->
 					<execution>
+						<id>npm run build</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>run build</arguments>
+						</configuration>
+					</execution>
+<!--					Webpack helps to bundle all the code and bundles together-->
+<!--					<execution>
 						<id>webpack build</id>
 						<goals>
 							<goal>webpack</goal>
 						</goals>
 						<configuration>
-							<arguments>--config webpack.config.js</arguments>
+							<arguments>&#45;&#45;config ${project.basedir}/webpack.config.js</arguments>
 						</configuration>
-					</execution>
+					</execution>-->
 				</executions>
 			</plugin>
 		</plugins>

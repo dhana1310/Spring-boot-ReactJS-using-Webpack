@@ -10,8 +10,8 @@ mvnw.cmd
 mvnw
 
 node_modules
-
-src/main/resources/static/built
+src/main/app/node_modules
+src/main/app/package-lock.json
 
 package-lock.json
 
